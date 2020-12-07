@@ -21,28 +21,28 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
         <li class="nav-item active">
-            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/users">Users</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/roles">Roles</a>
+            <a class="nav-link" href="{{ route('roles.index') }}">Roles</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/priorities">Priorities</a>
+            <a class="nav-link" href="{{ route('priorities.index') }}">Priorities</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/reminders">Reminders</a>
+            <a class="nav-link" href="{{ route('reminders.index') }}">Reminders</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/statuses">Statuses</a>
+            <a class="nav-link" href="{{ route('statuses.index') }}">Statuses</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/tasks">Tasks</a>
+            <a class="nav-link" href="{{ route('tasks.index') }}">Tasks</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/categories">Categories</a>
+            <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
         </li>
         </ul>
     </div>
