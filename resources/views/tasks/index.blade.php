@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <table class="table table-striped">
+    <a href="{{ route('tasks.create') }}" class="btn btn-primary mt-5">Add</a>
+    <table class="table table-striped mt-3">
         <thead>
             <tr>
             <th scope="col">Id</th>
@@ -16,6 +17,10 @@
                     <td>{{$task->task_name}}</td>
                     <td>{{$task->task_description}}</td>
                     <td>{{$task->notes}}</td>
+                    <td>
+                        <a class="btn btn-outline-primary" href="{{ route('tasks.show', ['task' => $task->id]) }}">Details</a>
+                        <a class="btn btn-outline-primary" href="{{ route('tasks.edit', ['task' => $task->id]) }}">Edit</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <table class="table table-striped">
+    <a href="{{ route('statuses.create') }}" class="btn btn-primary mt-5">Add</a>
+    <table class="table table-striped mt-3">
         <thead>
             <tr>
             <th scope="col">Id</th>
@@ -12,6 +13,10 @@
                 <tr>
                     <td>{{$status->id}}</td>
                     <td>{{$status->name}}</td>
+                    <td>
+                        <a class="btn btn-outline-primary" href="{{ route('statuses.show', ['status' => $status->id]) }}">Details</a>
+                        <a class="btn btn-outline-primary" href="{{ route('statuses.edit', ['status' => $status->id]) }}">Edit</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
