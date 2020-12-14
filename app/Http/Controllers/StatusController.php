@@ -48,7 +48,7 @@ class StatusController extends Controller
     public function show($id)
     {
         $status = Status::findOrFail($id);
-        dd($status);
+        return view('statuses.show', compact('status'));
     }
 
     /**

@@ -48,7 +48,7 @@ class ReminderController extends Controller
     public function show($id)
     {
         $reminder = Reminder::findOrFail($id);
-        dd($reminder);
+        return view('reminders.show', compact('reminder'));
     }
 
     /**

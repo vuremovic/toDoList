@@ -49,7 +49,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::findOrFail($id);
-        dd($category);
+        return view('categories.show', compact('category'));
     }
 
     /**

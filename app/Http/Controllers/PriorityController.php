@@ -48,7 +48,7 @@ class PriorityController extends Controller
     public function show($id)
     {
         $priority = Priority::findOrFail($id);
-        dd($priority);
+        return view('priorities.show', compact('priority'));
     }
 
     /**

@@ -9,7 +9,7 @@
             <th scope="col">Status name</th>
             </tr>
         </thead>
-            @foreach ($statuses-> items() as $status)
+            @foreach ($statuses -> items() as $status)
                 <tr>
                     <td>{{$status->id}}</td>
                     <td>{{$status->name}}</td>
