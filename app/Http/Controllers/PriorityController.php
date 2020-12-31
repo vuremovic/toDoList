@@ -25,7 +25,7 @@ class PriorityController extends Controller
      */
     public function create()
     {
-        //
+        return view('priorities.create');
     }
 
     /**
@@ -36,7 +36,13 @@ class PriorityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:priorities|max:255',
+            
+        ]);
+        
+        $priority = Priority::create($validated);
+        return view('priorities.show', compact('priority'));
     }
 
     /**
@@ -59,7 +65,8 @@ class PriorityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $priority = Priority::findOrFail($id);
+        return view('priorities.edit', compact('priority'));
     }
 
     /**
@@ -71,7 +78,15 @@ class PriorityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
+        $priority = Priority::findOrFail($id);
+        $priority->fill($validated);
+        $priority->save();
+
+        return view('priorities.show', compact('priority'));
     }
 
     /**

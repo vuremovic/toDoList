@@ -6,7 +6,7 @@
         <thead>
             <tr>
             <th scope="col">Id</th>
-            <th scope="col">Priority name</th>
+            <th scope="col">Priority</th>
             <th>Actions</th>
             </tr>
         </thead>
