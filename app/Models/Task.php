@@ -14,6 +14,11 @@ class Task extends Model
         'task_description',
         'notes'
     ];
+
+    public function priority() { return $this->belongsTo(Priority::class); }
+    public function reminder() { return $this->belongsTo(Reminder::class); }
+    public function status() { return $this->belongsTo(Status::class); }
+    public function category() { return $this->belongsTo(Category::class); }
 }
 
             

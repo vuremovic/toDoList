@@ -12,4 +12,6 @@ class Reminder extends Model
     protected $fillable = [
         'number_of_days'
     ];
+
+    public function tasks() { return $this->hasMany(Task::class); }
 }
