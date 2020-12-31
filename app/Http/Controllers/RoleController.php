@@ -65,7 +65,8 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        return view('roles.edit', compact('role'));
     }
 
     /**
@@ -77,7 +78,15 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
+        $role = Role::findOrFail($id);
+        $role->fill($validated);
+        $role->save();
+
+        return view('roles.show', compact('role'));
     }
 
     /**
