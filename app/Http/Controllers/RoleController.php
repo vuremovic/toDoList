@@ -25,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('roles.create');
     }
 
     /**
@@ -36,7 +36,13 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:roles|max:255',
+            
+        ]);
+        
+        $role = Role::create($validated);
+        return view('roles.show', compact('role'));
     }
 
     /**

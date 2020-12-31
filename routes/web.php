@@ -8,6 +8,7 @@ use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -21,13 +22,17 @@ use App\Http\Controllers\TaskController;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::resource('categories', CategoryController::class);
-Route::resource('priorities', PriorityController::class);
-Route::resource('reminders', ReminderController::class);
-Route::resource('roles', RoleController::class);
-Route::resource('statuses', StatusController::class);
-Route::resource('tasks', TaskController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('priorities', PriorityController::class);
+    Route::resource('reminders', ReminderController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('statuses', StatusController::class);
+    Route::resource('tasks', TaskController::class);
+    Route::resource('users', UserController::class);
+
+
