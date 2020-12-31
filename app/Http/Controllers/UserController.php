@@ -60,7 +60,14 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $roles = Role::pluck('name', 'id');
+        
+
+        return view('users.edit',
+            compact('user', 'roles')
+        );
     }
 
     /**
@@ -72,7 +79,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'email' => 'required|max:255',
+            'role_id' => 'required'
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->fill($validated);
+        $user->save();
+
+        return redirect()->route('users.show', ['user' => $user->id]);
     }
 
     /**
