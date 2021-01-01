@@ -10,7 +10,7 @@
     
         <div class="form-group">
             <label for="name">Priority</label>
-            <input name="name" type="text" class="form-control" id="name">
+            <input value="{{ @old('name') }}" name="name" type="text" class="form-control" id="name">
             @if ($errors->has('name'))
                 <span class="text-danger">{{ $errors->first('name') }}</span>
             @endif

@@ -9,7 +9,7 @@
         @csrf
         @method('PUT')
 
-        <!-- country name -->
+        
         <div class="form-group">
             <label for="name">Priority</label>
             <input value="{{ $priority->name }}" name="name" type="text" class="form-control" id="name">

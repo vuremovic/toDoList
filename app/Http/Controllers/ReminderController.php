@@ -25,7 +25,7 @@ class ReminderController extends Controller
      */
     public function create()
     {
-        //
+        return view('reminders.create');
     }
 
     /**
@@ -36,7 +36,13 @@ class ReminderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'number_of_days' => 'required|unique:reminders',
+            
+        ]);
+        
+        $reminder = Reminder::create($validated);
+        return view('reminders.show', compact('reminder'));
     }
 
     /**
@@ -59,7 +65,8 @@ class ReminderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $reminder = Reminder::findOrFail($id);
+        return view('reminders.edit', compact('reminder'));
     }
 
     /**
@@ -71,7 +78,15 @@ class ReminderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'number_of_days' => 'required',
+        ]);
+
+        $reminder = Reminder::findOrFail($id);
+        $reminder->fill($validated);
+        $reminder->save();
+
+        return view('reminders.show', compact('reminder'));
     }
 
     /**
