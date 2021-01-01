@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -37,7 +37,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:categories|max:255',
+            
+        ]);
+        
+        $category = Category::create($validated);
+        return view('categories.show', compact('category'));
     }
 
     /**
@@ -60,7 +66,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -72,7 +79,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
+        $category = Category::findOrFail($id);
+        $category->fill($validated);
+        $category->save();
+
+        return view('categories.show', compact('category'));
     }
 
     /**
