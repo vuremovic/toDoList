@@ -25,7 +25,7 @@ class StatusController extends Controller
      */
     public function create()
     {
-        //
+        return view('statuses.create');
     }
 
     /**
@@ -36,7 +36,13 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:statuses|max:255',
+            
+        ]);
+        
+        $status = Status::create($validated);
+        return view('statuses.show', compact('status'));
     }
 
     /**
@@ -59,7 +65,8 @@ class StatusController extends Controller
      */
     public function edit($id)
     {
-        //
+        $status = Status::findOrFail($id);
+        return view('statuses.edit', compact('status'));
     }
 
     /**
@@ -71,7 +78,15 @@ class StatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
+        $status = Status::findOrFail($id);
+        $status->fill($validated);
+        $status->save();
+
+        return view('statuses.show', compact('status'));
     }
 
     /**
