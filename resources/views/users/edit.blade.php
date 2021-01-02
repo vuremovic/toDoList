@@ -13,8 +13,8 @@
         <div class="form-group">
             <label for="first_name">First Name</label>
             <input value="{{ $user->first_name }}" name="first_name" type="text" class="form-control" id="first_name">
-            @if ($errors->has('name'))
-                <span class="text-danger">{{ $errors->first('name') }}</span>
+            @if ($errors->has('first_name'))
+                <span class="text-danger">{{ $errors->first('first_name') }}</span>
             @endif
         </div>
 
@@ -22,8 +22,8 @@
         <div class="form-group">
             <label for="last_name">Last Name</label>
             <input value="{{ $user->last_name }}" name="last_name" type="text" class="form-control" id="last_name">
-            @if ($errors->has('name'))
-                <span class="text-danger">{{ $errors->first('name') }}</span>
+            @if ($errors->has('last_name'))
+                <span class="text-danger">{{ $errors->first('last_name') }}</span>
             @endif
         </div>
 

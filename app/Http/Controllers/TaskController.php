@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\Status;
+use App\Models\Priority;
+use App\Models\Category;
 
 class TaskController extends Controller
 {
@@ -14,7 +17,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::paginate();
+        $tasks = Task::with(['status', 'priority', 'category'])->paginate();
         return view('tasks.index', compact('tasks'));
     }
 
@@ -47,7 +50,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::with(['status', 'priority', 'category'])->findOrFail($id);
         return view('tasks.show', compact('task'));
     }
 
@@ -59,7 +62,16 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        $task = Task::findOrFail($id);
+
+        $statuses = Status::pluck('name', 'id');
+        $priorities = Priority::pluck('name', 'id');
+        $categories = Category::pluck('name', 'id');
+        
+
+        return view('tasks.edit',
+            compact('task', 'statuses', 'priorities', 'categories')
+        );
     }
 
     /**
@@ -71,7 +83,20 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'task_name' => 'required|max:255',
+            'task_description' => 'required|max:255',
+            'notes' => 'required|max:255',
+            'status_id' => 'required',
+            'priority_id' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        $task = Task::findOrFail($id);
+        $task->fill($validated);
+        $task->save();
+
+        return redirect()->route('tasks.show', ['task' => $task->id]);
     }
 
     /**

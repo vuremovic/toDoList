@@ -16,6 +16,7 @@
               <td>{{ $user->id }}</td>
               <td>{{ $user->first_name }} {{ $user->last_name }}<br />{{ $user->email }}</td>
               <td>{{ $user->role->name }}</td>
+              
               <td>
                 <a class="btn btn-outline-primary" href="{{ route('users.show', ['user' => $user->id]) }}">Details</a>
                 <a class="btn btn-outline-primary" href="{{ route('users.edit', ['user' => $user->id]) }}">Edit</a>
