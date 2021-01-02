@@ -22,17 +22,23 @@ use App\Http\Controllers\UserController;
 |
 */
 
+/* ovo su rute gdje korisnik MORA biti prijavljen da bi im pristupio */
+Route::middleware(['auth'])->group(function () {
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('home');
 
-    Route::resource('categories', CategoryController::class);
-    Route::resource('priorities', PriorityController::class);
-    Route::resource('reminders', ReminderController::class);
-    Route::resource('roles', RoleController::class);
-    Route::resource('statuses', StatusController::class);
-    Route::resource('tasks', TaskController::class);
-    Route::resource('users', UserController::class);
+        /* ::post, ::put, ::patch, ::delete */
+        Route::resource('categories', CategoryController::class);
+        Route::resource('priorities', PriorityController::class);
+        Route::resource('reminders', ReminderController::class);
+        Route::resource('roles', RoleController::class);
+        Route::resource('statuses', StatusController::class);
+        Route::resource('tasks', TaskController::class);
+        Route::resource('users', UserController::class);
+    });
 
+/* ovdje su rute za login, registraciju, change password, itd. */
+require __DIR__.'/auth.php';
 
