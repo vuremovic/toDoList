@@ -25,7 +25,7 @@ $loggedInUser = \Auth::user();
             <!-- CSRF token -->
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger">Deactivate</button>
+            <button type="submit" onclick="confirm('Are you sure?')" class="btn btn-danger">Deactivate</button>
         </form>
         @endif
 

@@ -1,3 +1,8 @@
+@php
+$currentUser = \Auth::user();
+@endphp
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -90,7 +95,7 @@
     </style>
 
     <script>
-        /* temporarily here */
+        /* temporarily here  */
         function areYouSure(ev) {
             if(confirm('Are you sure you?')){
                 return true;
